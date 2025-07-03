@@ -9,7 +9,26 @@
  */
 
 export default {
-	async fetch(request, env, ctx) {
-		return new Response('Hello World!');
-	},
+  async fetch(request) {
+    if (new URL(request.url).pathname === '/.well-known/apple-app-site-association') {
+      return new Response(JSON.stringify({
+        "applinks": {
+          "apps": [],
+          "details": [
+            {
+              "appID": "KZH5U4Z5U3.com.battlebets.battlebets",
+              "paths": ["/join/*"]
+            }
+          ]
+        }
+      }), {
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": "max-age=3600"
+        }
+      });
+    }
+
+    return new Response("Not found", { status: 404 });
+  }
 };
