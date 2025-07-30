@@ -10,25 +10,35 @@
 
 export default {
   async fetch(request) {
-    if (new URL(request.url).pathname === '/.well-known/apple-app-site-association') {
-      return new Response(JSON.stringify({
-        "applinks": {
-          "apps": [],
-          "details": [
+    const url = new URL(request.url)
+    const p = url.pathname
+
+    // match both /.well-known/apple-app-site-association
+    // and /apple-app-site-association (no leading folder)
+    if (
+      p === "/.well-known/apple-app-site-association" ||
+      p === "/apple-app-site-association"
+    ) {
+      const body = JSON.stringify({
+        applinks: {
+          apps: [],
+          details: [
             {
-              "appID": "KZH5U4Z5U3.com.battlebets.battlebets",
-              "paths": ["/join/*"]
-            }
-          ]
-        }
-      }), {
+              appID: "KZH5U4Z5U3.com.battlebets.battlebets",
+              paths: ["/join/*"],
+            },
+          ],
+        },
+      })
+
+      return new Response(body, {
         headers: {
           "Content-Type": "application/json",
-          "Cache-Control": "max-age=3600"
-        }
-      });
+          "Cache-Control": "max-age=3600",
+        },
+      })
     }
 
-    return new Response("Not found", { status: 404 });
-  }
-};
+    return new Response("Not found", { status: 404 })
+  },
+}
