@@ -9,7 +9,16 @@
 	"compatibility_date": "2025-07-03",
 	"observability": {
 		"enabled": true
-	}
+	},
+
+	"routes": [
+    // iOS looks here …
+    "join.battlebets.app/.well-known/apple-app-site-association",
+    // …and here, too
+    "join.battlebets.app/apple-app-site-association"
+  ]
+
+	
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
