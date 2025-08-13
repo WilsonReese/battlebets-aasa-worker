@@ -25,7 +25,7 @@ export default {
           details: [
             {
               appID: "KZH5U4Z5U3.com.battlebets.battlebets",
-              paths: ["/join", "/join/*", "/join-test", "/join-test/*"],
+              paths: ["/join", "/join/*", "/join-test/*", "/join-test"],
             },
           ],
         },
