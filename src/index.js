@@ -7,7 +7,7 @@ export default {
       pathname === "/.well-known/apple-app-site-association" ||
       pathname === "/apple-app-site-association";
 
-    if (!isAASAPath) return new Response("Not found", { status: 404 });
+    if (!isAASAPath) return new Response("You must download the Battle Bets app first. Go back, download the app, and try again.", { status: 404 });
 
     const paths = isAASAHost
       ? [
