@@ -141,7 +141,7 @@ export default {
     // Direct-to-app deep-link host; preserves params for a one-tap open
     const ACCEPT_INVITE =
       pool && tok
-        ? `https://aasa.battlebets.app/join?pool_id=${encodeURIComponent(pool)}&token=${encodeURIComponent(tok)}`
+        ? `https://join.battlebets.app/join?pool_id=${encodeURIComponent(pool)}&token=${encodeURIComponent(tok)}`
         : "";
 
     return new Response(renderDownloadHTML({ acceptInviteUrl: ACCEPT_INVITE }), {
@@ -160,7 +160,7 @@ function renderDownloadHTML({ acceptInviteUrl }) {
 
   // If we have params, show Accept Invite; otherwise show Visit Website
   const ghostHref = acceptInviteUrl || SITE;
-  const ghostText = acceptInviteUrl ? "Accept invite in Battle Bets" : "Visit our website";
+  const ghostText = acceptInviteUrl ? "Return to League Invitation" : "Visit our website";
 
   return `<!doctype html>
 <html lang="en">
@@ -193,12 +193,12 @@ function renderDownloadHTML({ acceptInviteUrl }) {
 <body>
   <div class="card">
     <h1>Download Battle Bets</h1>
-    <p>You’ll need the app installed to open invites.</p>
+    <p>You'll need the app installed to open invites.</p>
 
     <a class="btn btn-primary" href="${APP_STORE}">Download on the App Store</a>
     <a class="btn btn-ghost" href="${ghostHref}">${ghostText}</a>
 
-    <small>After installing, return to your invite link to join automatically.</small>
+    <small>After installing, return to your invitation link to join the league.</small>
   </div>
 </body>
 </html>`;
