@@ -14,7 +14,7 @@ export default {
         ? [
             "/join", "/join/*",          // allow deep link handoff on aasa.*
             "/join-test", "/join-test/*", // optional
-            "/open" // ✅ added universal link path
+            "/pools" // ✅ added universal link path
           ]
         : [
             "NOT /join", "NOT /join/*",  // force browser landing on join.*
@@ -42,32 +42,35 @@ export default {
     }
 
     // ✅ Handle direct deep link to open the app or fallback to App Store
-    if (pathname === "/open") {
-      return new Response(
-        `<!DOCTYPE html>
-        <html>
-          <head>
-            <meta charset="utf-8" />
-            <title>Opening Battle Bets…</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <meta http-equiv="refresh" content="0;url=battlebets://open" />
-            <script>
-              setTimeout(function() {
-                window.location.href = "https://apps.apple.com/us/app/battle-bets/id6738606749";
-              }, 1500);
-            </script>
-          </head>
-          <body>
-            <p>Redirecting to Battle Bets…</p>
-          </body>
-        </html>`,
-        {
-          headers: {
-            "Content-Type": "text/html; charset=utf-8",
-            "Cache-Control": "no-store"
-          }
-        }
-      );
+    // if (pathname === "/pools") {
+    //   return new Response(
+    //     `<!DOCTYPE html>
+    //     <html>
+    //       <head>
+    //         <meta charset="utf-8" />
+    //         <title>Opening Battle Bets…</title>
+    //         <meta name="viewport" content="width=device-width, initial-scale=1" />
+    //         <meta http-equiv="refresh" content="0;url=battlebets://open" />
+    //         <script>
+    //           setTimeout(function() {
+    //             window.location.href = "https://battlebets.app";
+    //           }, 1500);
+    //         </script>
+    //       </head>
+    //       <body>
+    //         <p>Redirecting to Battle Bets…</p>
+    //       </body>
+    //     </html>`,
+    //     {
+    //       headers: {
+    //         "Content-Type": "text/html; charset=utf-8",
+    //         "Cache-Control": "no-store"
+    //       }
+    //     }
+    //   );
+    // }
+    if (pathname === "/pools") {
+      return Response.redirect("https://battlebets.app", 302);
     }
 
 
